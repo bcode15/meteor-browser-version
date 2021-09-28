@@ -11,12 +11,6 @@ Package.describe({
 });
 
 Package.onUse(function(api) {
-  Npm.depends({
-    'ua-parser-js': '0.7.28',
-    'lodash': '4.17.21',
-    'fs-extra': '10.0.0'
-  });
-
   api.use([
     'ecmascript'
   ]);

@@ -1,6 +1,6 @@
 Package.describe({
-  name: 'brucejo:browser-version',
-  version: '0.0.1',
+  name: 'bcode15:browser-version',
+  version: '0.1.0',
   // Brief, one-line summary of the package.
   summary: 'Set browser version cookies',
   // URL to the Git repository containing the source code for this package.

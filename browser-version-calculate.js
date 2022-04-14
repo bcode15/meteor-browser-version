@@ -19,6 +19,7 @@ async function browserVersionCalculate() {
 
   browser.name = browser.name.toLocaleLowerCase();
   browser.versions = browser.version.split('.');
+  // legacy is default
   browser.js = 'legacy';
 
   const bMin = minVersions[browser.name];
@@ -26,6 +27,7 @@ async function browserVersionCalculate() {
     // bMin is either the major number or an array of numbers
     if(typeof bMin === 'number' && browser.versions[0] >= bMin) browser.js = 'modern';
     else {
+      // check 2nd & 3rd level browser version against bMin
       browser.js = 'modern';
       for(let i = 0; i < bMin.length; i++) {
         // All versions up to now have been equal to

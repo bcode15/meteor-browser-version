@@ -1,9 +1,8 @@
 const minVersions = __meteor_runtime_config__.minVersions;
 
 Meteor.startup(async function browserVersionStartup() {
-  // Dynamically load the calculation function, if necessary
-  // otherwise the file will be whitelisted for the meteor server
-  // so that the server can support dynamic requests from statically served clients
+  // if minVersions is defined then the version calc code needs to be loaded
+  // This should only be true for files statically compiled with mstatic
   if(minVersions) {
     await import('./browser-version-calculate');
   } else {

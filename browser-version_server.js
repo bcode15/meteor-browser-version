@@ -9,9 +9,9 @@ if(Meteor.isDevelopment) {
       obj[key] = val.version;
       return obj;
     }, {});
-    // Meteor development runs from .meteor/local/build/programs/server
-    // want to write out to the meteor private/static directory
-    const outPath = path.normalize(process.cwd() + '/../../../../../private/meteor-static/minVersions.json');
+    // Output path for minVersions.json file
+    if(!process.env.BROWSER_VERSION_OUTPATH) throw new Error(`BROWSER_VERSION_OUTPATH must be defined`);
+    const outPath = path.normalize(process.env.BROWSER_VERSION_OUTPATH + '/minVersions.json');
     console.log(`saving minVersions in ${outPath}: `, minVersions);
     try {
       fs.outputFileSync(outPath, JSON.stringify(minVersions));

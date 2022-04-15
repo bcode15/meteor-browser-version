@@ -15,6 +15,11 @@ Package.onUse(function(api) {
     'ecmascript'
   ]);
 
+  Npm.depends({
+    'lodash': '4.17.15',
+    'fs-extra': '10.0.1'
+  });
+
   api.use([
     'modern-browsers'
   ], 'server');

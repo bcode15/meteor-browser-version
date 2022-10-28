@@ -1,3 +1,6 @@
+import { Meteor } from 'meteor/meteor';
+/* global __meteor_runtime_config__ */
+
 const minVersions = __meteor_runtime_config__.minVersions;
 
 Meteor.startup(async function browserVersionStartup() {

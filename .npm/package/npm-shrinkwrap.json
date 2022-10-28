@@ -13,6 +13,9 @@
     "lodash": {
       "version": "4.17.15"
     },
+    "ua-parser-js": {
+      "version": "1.0.32"
+    },
     "universalify": {
       "version": "2.0.0"
     }

@@ -1,6 +1,11 @@
+import { Meteor } from 'meteor/meteor';
+
 import fs from 'fs-extra';
 import {getMinimumBrowserVersions} from 'meteor/modern-browsers';
 import {_} from 'lodash';
+
+/* global process, console */
+/* eslint no-console: 0 */
 
 if(Meteor.isDevelopment) {
   Meteor.startup(() => {
@@ -13,7 +18,7 @@ if(Meteor.isDevelopment) {
     }, {});
     // Output path for minVersions.json file
     // projRoot is prior to .meteor directory
-    const projRoot = cwd = process.cwd().split('/.meteor')[0];
+    const projRoot = process.cwd().split('/.meteor')[0];
     const outPath = projRoot + '/private/mstatic/minVersions.json';
     let minVer;
     try {
@@ -23,7 +28,10 @@ if(Meteor.isDevelopment) {
       console.info(`Browser-version creating: ${outPath}`);
     }
     // Nothing new, bail
-    if(minVer && _.isEqual(JSON.parse(minVer), minVersions)) return;
+    if(minVer && _.isEqual(JSON.parse(minVer), minVersions)) {
+      console.log(`Browser-version at ${outPath} unchanged`)
+      return;
+    }
 
     console.warn(`RESTARTING: saving minVersions in ${outPath}: `, minVersions);
     try {

@@ -1,3 +1,5 @@
+/* global Package, Npm */
+
 Package.describe({
   name: 'bcode15:browser-version',
   version: '0.1.0',
@@ -17,7 +19,8 @@ Package.onUse(function(api) {
 
   Npm.depends({
     'lodash': '4.17.15',
-    'fs-extra': '10.0.1'
+    'fs-extra': '10.0.1',
+    'ua-parser-js': '1.0.32'
   });
 
   api.use([

@@ -1,18 +1,23 @@
+/* global __meteor_runtime_config__, location */
+
 const minVersions = __meteor_runtime_config__.minVersions;
 
 // Calculations are in a separate file so that they are dynamically
 // loaded for clients that need to do the calculation
 // For the meteor server the included import will be whitelisted
 // so that the dynamic data is set up for statically served clients
+/**
+ * Calculate if this browser meets the required level
+ */
 async function browserVersionCalculate() {
   const {UAParser} = await import('ua-parser-js');
-  let parser = new UAParser();
+  const parser = new UAParser();
   const browser = parser.getBrowser();
 
   // Go get the current cookies
   const cookies = document.cookie.split(';')
   .reduce((obj, _c) => {
-    let v = _c.trim().split('=');
+    const v = _c.trim().split('=');
     obj[v[0]] = v[1];
     return obj;
   }, {})

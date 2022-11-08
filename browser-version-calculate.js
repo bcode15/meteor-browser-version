@@ -1,3 +1,5 @@
+import {UAParser} from 'ua-parser-js';
+
 /* global __meteor_runtime_config__, location */
 
 const minVersions = __meteor_runtime_config__.minVersions;
@@ -10,7 +12,6 @@ const minVersions = __meteor_runtime_config__.minVersions;
  * Calculate if this browser meets the required level
  */
 async function browserVersionCalculate() {
-  const {UAParser} = await import('ua-parser-js');
   const parser = new UAParser();
   const browser = parser.getBrowser();
 

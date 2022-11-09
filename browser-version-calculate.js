@@ -57,4 +57,4 @@ async function browserVersionCalculate() {
   }
 }
 
-browserVersionCalculate();
+if (minVersions) browserVersionCalculate();

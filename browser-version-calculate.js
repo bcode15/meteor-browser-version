@@ -49,7 +49,7 @@ async function browserVersionCalculate() {
   // cookie expires in 1 yr
   // always set it with new expiration
   const expiry = new Date(Date.now() + 1000 * 60 * 60 * 24 * 365);
-  document.cookie=`browser-js=${browser.js};same-site=strict;expires=${expiry.toUTCString()}`
+  document.cookie=`browser-js=${browser.js};path=/;same-site=strict;expires=${expiry.toUTCString()}`
 
   // The value updated, reload
   if(!cookies['browser-js'] || cookies['browser-js'] !== browser.js) {

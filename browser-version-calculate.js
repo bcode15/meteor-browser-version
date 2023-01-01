@@ -23,7 +23,7 @@ async function browserVersionCalculate() {
     return obj;
   }, {})
 
-  browser.name = browser.name.toLocaleLowerCase();
+  browser.name = browser.name.toLocaleLowerCase().replaceAll(' ', '_');
   browser.versions = browser.version.split('.');
   // legacy is default
   browser.js = 'legacy';

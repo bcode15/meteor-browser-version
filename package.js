@@ -2,7 +2,7 @@
 
 Package.describe({
   name: 'bcode15:browser-version',
-  version: '0.2.0',
+  version: '0.2.1',
   // Brief, one-line summary of the package.
   summary: 'Set browser version cookies',
   // URL to the Git repository containing the source code for this package.
@@ -14,7 +14,8 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.use([
-    'ecmascript'
+    'ecmascript',
+    'autoupdate'
   ]);
 
   Npm.depends({

@@ -1,3 +1,5 @@
+import { Meteor } from 'meteor/meteor';
+import { Autoupdate } from 'meteor/autoupdate';
 import {UAParser} from 'ua-parser-js';
 
 /* global __meteor_runtime_config__, location */
@@ -23,7 +25,7 @@ async function browserVersionCalculate() {
     return obj;
   }, {})
 
-  browser.name = browser.name.toLocaleLowerCase().replaceAll(' ', '_');
+  browser.name = browser.name.toLocaleLowerCase().replace(new RegExp(' ', 'g'), '_');
   browser.versions = browser.version.split('.');
   // legacy is default
   browser.js = 'legacy';
@@ -52,9 +54,16 @@ async function browserVersionCalculate() {
   document.cookie=`browser-js=${browser.js};path=/;same-site=strict;expires=${expiry.toUTCString()}`
 
   // The value updated, reload
-  if(!cookies['browser-js'] || cookies['browser-js'] !== browser.js) {
-    location.reload();
+  if(!cookies['browser-js'] || cookies['browser-js'] !== browser.js && !Autoupdate.newClientAvailable()) {
+    // don't reload if the version is getting updated
+    if (!Autoupdate.newClientAvailable() ) location.reload();
   }
 }
-
-if (minVersions) browserVersionCalculate();
+if (minVersions) {
+  Meteor.startup(() => {
+    Meteor.defer(async () => {
+      // don't update browser-js cookie until all is settled
+      await browserVersionCalculate();
+    });
+  });
+}
